@@ -1,7 +1,9 @@
-//this is the beginning board
+
+
 var data = ['','','','','','','','','']
 
 var squares = document.getElementsByClassName('square')
+var winnerId = document.getElementById('winner')
 var xTurn = true
 var addX = function(event){
   if (winner === '') {
@@ -19,7 +21,6 @@ var addX = function(event){
     // winningBoard()
     data[squareNumber] = event.target.innerText
     winninigOpportunities()
-    var winnerId = document.getElementById('winner')
     var outcome
     if (winner === 'X') {
       outcome = document.createTextNode("Player X Won!");
@@ -81,11 +82,27 @@ var winninigOpportunities = function(){
 
 }
 
+
+
 var resetButton = document.getElementById('resetButton')
 var reset = function(){
-  data = ['','','','','','','','','']
-  winner = ''
-  console.log(winner)
+  data = ['','','','','','','','',''];
+  winner = '';
+  xTurn = true;
+  document.getElementById('winner').innerText = ''
+  for (var i = 0; i < squares.length; i++) {
+    squares[i].innerText = ''
+  }
+
+  for (var i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('click', addX, {once: true})
+  }
+
+
+
+
+
+
 
 }
 
